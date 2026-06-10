@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZLDR Events – User Guide</title>
+<style>
+  :root {
+    --orange: #FF6B00;
+    --orange-light: #fff3e0;
+    --dark: #1a1a1a;
+    --mid: #444;
+    --light: #f8f8f8;
+    --border: #ddd;
+    --blue: #1565C0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--dark);
+    background: #fff;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 48px;
+  }
+
+  /* ── Cover ───────────────────────────────────────────────── */
+  .cover {
+    text-align: center;
+    padding: 60px 0 50px;
+    border-bottom: 3px solid var(--orange);
+    margin-bottom: 48px;
+    page-break-after: avoid;
+  }
+  .cover-logo {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--orange);
+    letter-spacing: -1px;
+  }
+  .cover-sub {
+    font-size: 20px;
+    color: var(--mid);
+    margin-top: 6px;
+  }
+  .cover-doc {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #888;
+  }
+
+  /* ── TOC ─────────────────────────────────────────────────── */
+  .toc {
+    background: var(--light);
+    border-left: 4px solid var(--orange);
+    padding: 20px 28px;
+    margin-bottom: 48px;
+    page-break-inside: avoid;
+  }
+  .toc h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+  .toc ol {
+    padding-left: 20px;
+  }
+  .toc li {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  .toc a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ── Sections ────────────────────────────────────────────── */
+  h1 {
+    font-size: 26px;
+    color: var(--orange);
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 6px;
+    margin: 48px 0 18px;
+  }
+  h2 {
+    font-size: 18px;
+    color: var(--dark);
+    margin: 32px 0 12px;
+  }
+  h3 {
+    font-size: 15px;
+    color: var(--mid);
+    margin: 20px 0 8px;
+    font-weight: 600;
+  }
+  p { margin-bottom: 12px; }
+  ul, ol { padding-left: 22px; margin-bottom: 12px; }
+  li { margin-bottom: 5px; }
+
+  /* ── Callout boxes ───────────────────────────────────────── */
+  .callout {
+    background: var(--orange-light);
+    border-left: 4px solid var(--orange);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+  }
+  .callout strong { color: var(--orange); }
+
+  /* ── Screenshots ─────────────────────────────────────────── */
+  .screenshot-row {
+    display: flex;
+    gap: 28px;
+    margin: 24px 0;
+    align-items: flex-start;
+    page-break-inside: avoid;
+  }
+  .screenshot-row.single {
+    justify-content: center;
+  }
+  .screenshot-wrap {
+    text-align: center;
+    flex: 0 0 auto;
+  }
+  .screenshot-wrap img {
+    width: 220px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    display: block;
+  }
+  .screenshot-wrap.wide img {
+    width: 260px;
+  }
+  .caption {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .screenshot-desc {
+    flex: 1;
+    padding-top: 8px;
+  }
+
+  /* ── UI element labels ───────────────────────────────────── */
+  .label {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    vertical-align: middle;
+  }
+  .label.blue {
+    background: var(--blue);
+  }
+  code {
+    background: #f0f0f0;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: 'Consolas', monospace;
+  }
+
+  /* ── Table ───────────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  th {
+    background: var(--orange);
+    color: #fff;
+    padding: 9px 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:nth-child(even) td { background: var(--light); }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  .footer {
+    margin-top: 56px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+  }
+
+  /* ── Print ───────────────────────────────────────────────── */
+  @media print {
+    body { padding: 20px 32px; font-size: 13px; }
+    h1 { page-break-before: always; }
+    h1:first-of-type { page-break-before: avoid; }
+    .screenshot-row { page-break-inside: avoid; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COVER
+════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-logo">ZLDR Events</div>
+  <div class="cover-sub">User Guide</div>
+  <div class="cover-doc">Version 1.2.0 &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; Android</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TABLE OF CONTENTS
+════════════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#signing-in">Signing In</a></li>
+    <li><a href="#events-list">Browsing Events</a></li>
+    <li><a href="#event-detail">Event Details</a></li>
+    <li><a href="#settings">Settings</a></li>
+    <li><a href="#tips">Tips &amp; Notes</a></li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     1. OVERVIEW
+════════════════════════════════════════════════════════════ -->
+<h1 id="overview">1 · Overview</h1>
+
+<p><strong>ZLDR Events</strong> is a read-only event viewer for members of the ZLDR (Zwift Long Distance Runners and Riders) community. It shows all upcoming ZLDR cycling and running events directly from Zwift, in one place, without needing to hunt through the Zwift Companion app or website.</p>
+
+<p>The app displays:</p>
+<ul>
+  <li>All upcoming <strong>ZLDR running events</strong> — group rides, races, time trials, workouts</li>
+  <li>All upcoming <strong>ZLDR cycling events</strong> — the same categories for cyclists</li>
+  <li>Full event details — date, time, route, distance, duration, categories, and sign-up counts</li>
+  <li>Direct links to <strong>join on Zwift</strong> and view results on <strong>ZwiftPower</strong></li>
+</ul>
+
+<div class="callout">
+  <strong>Read-only viewer:</strong> ZLDR Events does not join events, modify your Zwift profile, or store any personal data beyond your login tokens. Your Zwift credentials are used only to authenticate with the Zwift API.
+</div>
+
+<h2>What you need</h2>
+<ul>
+  <li>An Android device running Android 8.0 (Oreo) or later</li>
+  <li>A Zwift account (your usual Zwift username/email and password)</li>
+  <li>An internet connection when opening or refreshing the app</li>
+</ul>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     2. SIGNING IN
+════════════════════════════════════════════════════════════ -->
+<h1 id="signing-in">2 · Signing In</h1>
+
+<p>The first time you open ZLDR Events you will see the sign-in screen. Enter the same username (or email address) and password you use to log in to Zwift.</p>
+
+<div class="screenshot-row">
+  <div class="screenshot-desc">
+    <h3>Sign-in screen</h3>
+    <table>
+      <tr><th>Field</th><th>What to enter</th></tr>
+      <tr><td>Zwift username or email</td><td>Your Zwift login name or the email address linked to your account</td></tr>
+      <tr><td>Password</td><td>Your Zwift password — tap the eye icon to show/hide</td></tr>
+    </table>
+    <p>Tap <span class="label">Sign in</span> when ready. A spinner appears while the app authenticates. If credentials are incorrect an error message is shown beneath the password field — check for typos and try again.</p>
+    <div class="callout">
+      <strong>Staying signed in:</strong> Once signed in, your session is kept automatically. You will only need to sign in again if you tap <em>Log Out</em> in Settings, or if your session expires.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     3. BROWSING EVENTS
+════════════════════════════════════════════════════════════ -->
+<h1 id="events-list">3 · Browsing Events</h1>
+
+<p>After signing in you land on the main events screen. Two tabs — <strong>Running</strong> and <strong>Cycling</strong> — show upcoming ZLDR events for each sport.</p>
+
+<div class="screenshot-row">
+  <div class="screenshot-wrap">
+    <img src="ss_running.png" alt="Running events tab">
+    <div class="caption">Running tab — upcoming ZLDR running events</div>
+  </div>
+  <div class="screenshot-wrap">
+    <img src="ss_cycling.png" alt="Cycling events tab">
+    <div class="caption">Cycling tab — upcoming ZLDR cycling events</div>
+  </div>
+  <div class="screenshot-desc">
+    <h3>Switching tabs</h3>
+    <p>Tap <strong>Running</strong> or <strong>Cycling</strong> in the tab bar to switch between sports. Each tab scrolls independently and remembers your scroll position when you navigate back from an event detail.</p>
+
+    <h3>Event list items</h3>
+    <p>Each row shows:</p>
+    <ul>
+      <li><strong>Event name</strong> — the full ZLDR event title</li>
+      <li><strong>Date &amp; time</strong> — in your local timezone, with a time-of-day icon:
+        <ul>
+          <li>🌅 Amber — morning (before noon)</li>
+          <li>☀️ Yellow — afternoon (noon–6 pm)</li>
+          <li>🌙 Blue — evening (after 6 pm)</li>
+        </ul>
+      </li>
+      <li><strong>Event type</strong> — Group Ride, Race, Time Trial, Group Workout, etc.</li>
+      <li><strong>Distance / duration</strong> — kilometres or minutes where available</li>
+      <li><strong>Route name</strong> — the Zwift world route (when provided)</li>
+      <li><strong>Categories</strong> — A/B/C/D/E labels if the event has separate pens</li>
+      <li><strong>Sign-up count</strong> — number of participants registered (top-right corner)</li>
+    </ul>
+
+    <h3>Refreshing the list</h3>
+    <p>Tap the <strong>refresh icon</strong> (↻) in the top-right of the app bar to reload events from Zwift. A spinner replaces the icon while loading. The app also fetches fresh data automatically each time you open it.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     4. EVENT DETAILS
+════════════════════════════════════════════════════════════ -->
+<h1 id="event-detail">4 · Event Details</h1>
+
+<p>Tap any event in the list to open its full detail screen.</p>
+
+<div class="screenshot-row">
+  <div class="screenshot-wrap wide">
+    <img src="ss_detail.png" alt="Event detail screen">
+    <div class="caption">Event detail — date, duration, action buttons, description, and categories</div>
+  </div>
+  <div class="screenshot-desc">
+    <h3>What's shown</h3>
+    <table>
+      <tr><th>Field</th><th>Description</th></tr>
+      <tr><td>Event name &amp; sport icon</td><td>Full title with cycling or running icon</td></tr>
+      <tr><td>Starts</td><td>Full date, time, and local timezone</td></tr>
+      <tr><td>Route</td><td>Zwift world and route name (when available)</td></tr>
+      <tr><td>Distance / Duration</td><td>Kilometres, laps, or timed format as applicable</td></tr>
+      <tr><td>About</td><td>Event description from the organiser</td></tr>
+      <tr><td>Categories</td><td>Each pen (A/B/C/D/E) shown as a card with distance and participant count</td></tr>
+    </table>
+
+    <h3>Action buttons</h3>
+    <p>
+      <span class="label">+ Join</span> &nbsp; Opens the event registration page on <strong>zwift.com</strong> in your browser. You will need to be signed in to Zwift on the website or in the Companion app to complete sign-up.
+    </p>
+    <p>
+      <span class="label blue">ZwiftPower</span> &nbsp; Opens the event on <strong>zwiftpower.com</strong> in your browser, where you can view category results, rankings, and historical finisher data.
+    </p>
+
+    <h3>Going back</h3>
+    <p>Tap the <strong>back arrow</strong> (←) in the top-left to return to the events list. Your scroll position in the list is preserved.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     5. SETTINGS
+════════════════════════════════════════════════════════════ -->
+<h1 id="settings">5 · Settings</h1>
+
+<p>Tap the <strong>settings icon</strong> (⚙) in the top-right of the main screen to open Settings.</p>
+
+<div class="screenshot-row">
+  <div class="screenshot-wrap">
+    <img src="ss_settings.png" alt="Settings screen">
+    <div class="caption">Settings — About, Zwift Account, and Cache sections</div>
+  </div>
+  <div class="screenshot-desc">
+
+    <h3>About section</h3>
+    <p><strong>Help</strong> — Opens a quick-reference dialog covering the events screen, event detail fields, and account options.</p>
+    <p><strong>About</strong> — Shows the installed app version, build date, and a brief note about the unofficial Zwift API dependency.</p>
+
+    <h3>Zwift Account section</h3>
+    <p><strong>Signed in as</strong> — Displays the Zwift username associated with your current session.</p>
+    <p><strong>Log Out</strong> — Signs you out and returns to the sign-in screen. A confirmation dialog is shown first. You will need to enter your Zwift credentials again to use the app.</p>
+
+    <h3>Cache section</h3>
+    <p><strong>Clear Cached Data</strong> — Removes all locally cached events from the device. The list will reload from Zwift on the next refresh. Use this if event data appears stale or incorrect. A confirmation dialog is shown first.</p>
+
+    <div class="callout">
+      <strong>Note:</strong> Clearing cached data does not log you out. Your sign-in session is kept and the app will re-fetch events automatically.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     6. TIPS & NOTES
+════════════════════════════════════════════════════════════ -->
+<h1 id="tips">6 · Tips &amp; Notes</h1>
+
+<h2>Event timing</h2>
+<p>All event times are displayed in your device's local timezone. If you travel to a different timezone, the times will automatically reflect the change when you next open the app.</p>
+
+<h2>Why some events show 0.0 km</h2>
+<p>Some ZLDR events — particularly group workouts and structured training sessions — do not have a fixed route distance. Zwift publishes these with a distance of zero; this is expected and not an app issue.</p>
+
+<h2>Missing events</h2>
+<p>If a ZLDR event you expect to see is not listed, try tapping <strong>Refresh</strong> (↻). If it still doesn't appear, the event may not yet be published on Zwift's public feed, or it may be listed under the other sport tab.</p>
+
+<h2>Joining events</h2>
+<p>ZLDR Events is a viewer only. To register for an event, tap <span class="label">+ Join</span> on the detail screen — this opens Zwift's website where you can complete sign-up. You can also join directly from the Zwift app or Companion app.</p>
+
+<h2>Session expiry</h2>
+<p>Zwift access tokens expire periodically. The app refreshes them automatically in the background. On rare occasions the session may fully expire, in which case you will be returned to the sign-in screen. Simply sign in again to continue.</p>
+
+<h2>Internet connection</h2>
+<p>An internet connection is required to load or refresh events. Cached data from the last successful load is shown when offline, but the list will not update until connectivity is restored and you tap Refresh.</p>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<div class="footer">
+  ZLDR Events v1.2.0 &nbsp;·&nbsp; Developed by Alan Udell for the ZLDR community &nbsp;·&nbsp; June 2026<br>
+  This app uses unofficial Zwift APIs that are not officially supported by Zwift, Inc.
+</div>
+
+</body>
+</html>
