@@ -11,3 +11,4 @@ captures/
 *.keystore
 secrets.xml
 icon-designs/
+app/src/main/res/
