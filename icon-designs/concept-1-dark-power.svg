@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="384" height="384">
+  <defs>
+    <radialGradient id="bg1" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#1C1C32"/>
+      <stop offset="100%" stop-color="#080810"/>
+    </radialGradient>
+    <linearGradient id="zldrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF4500"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="192" height="192" rx="38" fill="url(#bg1)"/>
+
+  <!-- Subtle horizontal speed lines -->
+  <line x1="16" y1="52" x2="176" y2="52" stroke="#FF6B00" stroke-width="0.8" opacity="0.18"/>
+  <line x1="16" y1="140" x2="176" y2="140" stroke="#FF6B00" stroke-width="0.8" opacity="0.18"/>
+
+  <!-- Orange glow bloom behind ZLDR -->
+  <ellipse cx="96" cy="88" rx="72" ry="36" fill="#FF5500" opacity="0.08"/>
+
+  <!-- ZLDR — bold, orange, with glow -->
+  <text x="96" y="105"
+        font-family="Arial Black, Impact, sans-serif"
+        font-weight="900"
+        font-size="62"
+        fill="url(#zldrGrad)"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        letter-spacing="-2"
+        filter="url(#glow)">ZLDR</text>
+
+  <!-- Thin divider -->
+  <line x1="36" y1="127" x2="156" y2="127" stroke="#FF6B0066" stroke-width="1"/>
+
+  <!-- EVENTS label -->
+  <text x="96" y="148"
+        font-family="Arial, Helvetica, sans-serif"
+        font-weight="600"
+        font-size="14"
+        fill="#FFFFFF88"
+        text-anchor="middle"
+        letter-spacing="5">EVENTS</text>
+</svg>
